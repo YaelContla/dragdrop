@@ -1,0 +1,158 @@
+<h2 class="mt-5 mx-4 text-center">form-drag works!</h2>
+<hr>
+
+<div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col">
+        
+        <h2>Template: <small>Dinámico</small></h2>
+        <hr>
+
+                    <!-- QUITAR -->
+                        <button class="btn btn-outline-primary mb-3"
+                                type="button"
+                                (click)="agregarInput()">
+                            Agregar
+                        </button>
+
+                 <!-- Input Agregar -->
+                 <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Agregar</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input type="text"
+                               class="form-control"
+                               placeholder="add"
+                               [(ngModel)]="addInput"
+                               name="inputAdded">
+            
+                        <!-- <button class="btn btn-outline-primary"
+                                type="button"
+                                (click)="agregarInput()">
+                            Agregar
+                        </button> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!--  QUITAR -->
+
+                
+        
+                <!-- Nuevo Input -->
+                <div class="mb-3 row"> 
+                    <label class="col-sm-3 col-form-label">Nuevo</label>
+                    <div class="col-sm-9">
+
+                        <ul class="list-group mx-4"
+                            cdkDropList 
+                            #formList="cdkDropList"
+                            [cdkDropListData]="persona.nuevoInput"
+                            [cdkDropListConnectedTo]="[doneList]"
+                            (cdkDropListDropped)="drop($event)">
+                    <li class="list-group-item"
+                    *ngFor="let nuevo of persona.nuevoInput; let i = index">
+                    <input 
+                    [(ngModel)]="nuevo.nombre"
+                    name="nombre_{{i}}"
+                    class="form-control mb-1">
+
+                    <button class="btn btn-outline-danger"
+                            type="button"
+                            (click)="eliminar(i)">
+                        Eliminar
+                    </button>
+
+                    </li>
+                </ul>
+<!--         
+                        <div class="input-group mb-2"
+                             *ngFor="let nuevo of persona.nuevoInput; let i = index">
+                            <input 
+                                    [(ngModel)]="nuevo.nombre"
+                                    name="nombre_{{i}}"
+                                    class="form-control mb-1">
+        
+                                    <button class="btn btn-outline-danger"
+                                            type="button"
+                                            (click)="eliminar(i)">
+                                        Eliminar
+                                    </button>
+                        </div> -->
+                    </div>
+                </div>
+      </div>
+
+
+      <div class="col">
+        
+        <h2>Form construido</h2>
+        <hr>
+
+         <ul class="list-group mx-4" 
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="nuevoArray"
+            [cdkDropListConnectedTo]="[formList]"
+            (cdkDropListDropped)="drop($event)">
+                <li class="list-group-item" 
+                    *ngFor="let pokemon of nuevoArray"
+                    cdkDrag>
+                    {{pokemon.name}}
+                </li>
+          </ul>      
+
+        <form (ngSubmit)="guardar()">
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="nombre"
+                           [ngModel]="persona.nombre"
+                           name="nombre">
+                </div>
+            </div>
+
+            
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Apellido</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="apellido">
+                </div>
+            </div>
+
+             
+             <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Teléfono</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           placeholder="Teléfono">
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col">
+                    <button type="button" 
+                            class="btn btn-primary float-end"
+                            (click)="guardar()">Guardar</button>
+                </div>
+            </div>
+
+        </form>
+
+    
+     </div>
+    </div>
+  </div>
+
+
+
+
+  

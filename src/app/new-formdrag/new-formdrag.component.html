@@ -1,0 +1,93 @@
+<div class="container mx-3 my-8">
+  <h1>Forms</h1>
+  <hr />
+
+  <div class="container text-center">
+
+    <div class="row align-items-start">
+
+      <!-- 1 -->
+      <div class="col">
+        <h2>Items:</h2>
+
+        <div class="d-flex align-items-start">
+          <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Inputs</button>
+            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Buttons</button>
+            <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false">Attachments</button>
+            <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Labels</button>
+            <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">etc</button>
+          </div>
+
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
+
+              <div
+                class="list-group mx-4"
+                cdkDropList
+                #todoList="cdkDropList"
+                [cdkDropListData]="todo"
+                [cdkDropListConnectedTo]="[doneList]"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div class="list-group-item" *ngFor="let item of todo" cdkDrag>
+                  <!-- <input type="text" /> -->
+                  {{ item }}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+              
+              <div
+                class="list-group mx-4"
+                cdkDropList
+                #todoList2="cdkDropList"
+                [cdkDropListData]="todo2"
+                [cdkDropListConnectedTo]="[doneList]"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <div class="list-group-item" *ngFor="let item of todo2" cdkDrag>
+                  <!-- <input type="text" /> -->
+                  {{ item }}
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
+          </div>
+        </div>
+
+
+        <!-- ***1*** -->
+
+        <!-- 2 -->
+      </div>
+
+      <div class="col">
+        <h2>Form</h2>
+
+        <div
+          class="list-group mx-4"
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList, todoList2]"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="list-group-item" *ngFor="let item of done" cdkDrag>
+            {{ item }} <input type="text" />
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ***2***-->
+
+

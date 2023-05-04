@@ -1,0 +1,19 @@
+<div class="container mx-3 mt-4">
+    <h1>Pokemon</h1>
+        <hr>
+
+    <button 
+        class="my-4"
+        (click)="consumirApi()">Pokemones</button>
+
+    <ul class="list-group mx-4" cdkDropList (cdkDropListDropped)="drop($event)">
+        
+        <li class="list-group-item" 
+            *ngFor="let pokemon of pokemones"
+            cdkDrag>
+            {{pokemon.name}}
+        </li>
+
+    </ul>
+
+</div>

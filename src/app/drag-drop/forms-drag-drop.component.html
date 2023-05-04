@@ -1,0 +1,76 @@
+<div class="container mx-3 mt-4">
+    <h1>Forms</h1>
+        <hr>
+
+    <button 
+        class="my-4"
+        (click)="consumirApi()">
+        Pokemones
+    </button>
+
+
+    <div class="container text-center">
+        <div class="row align-items-start">
+          <div class="col">
+            <h3>Items</h3>
+            <!-- Lista -->
+            <ul class="list-group mx-4" 
+                cdkDropList 
+                #todoListOne="cdkDropList"
+                [cdkDropListData]="pokemones"
+                [cdkDropListConnectedTo]="[doneList]"
+                (cdkDropListDropped)="drop($event)">
+
+                <li class="list-group-item" 
+                    *ngFor="let pokemon of pokemones"
+                    cdkDrag>
+                    {{pokemon.name}}
+                </li>
+            </ul>
+          </div>
+          <!-- Lista ended -->
+
+          <!-- Done started -->
+          <div class="col">
+            <h3>Create your form</h3>
+
+            <ul class="list-group mx-4" 
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[todoListOne]"
+            (cdkDropListDropped)="drop($event)">
+                <li class="list-group-item" 
+                    *ngFor="let pokemon of done"
+                    cdkDrag>
+                    {{pokemon.name}}
+                </li>
+            </ul>
+          </div>
+          <!-- Done Ended -->
+
+          <!-- <div class="col">
+            <h3>Create your form col 2</h3>
+
+            <ul class="list-group mx-4" 
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done2"
+            [cdkDropListConnectedTo]="[todoListTwo]"
+            (cdkDropListDropped)="drop($event)">
+                <li class="list-group-item" 
+                    *ngFor="let pokemon of done2"
+                    cdkDrag>
+                    {{pokemon.name}}
+                </li>
+            </ul>
+          </div> -->
+
+
+        </div>
+      </div>
+
+
+</div>
+
+
